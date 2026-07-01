@@ -1,8 +1,8 @@
 import json
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import JsonOutputParser
-from backend.memory.memory_manager import memory_manager
-from backend.src.executor import TOOLS
+from backend_single_agent.memory.memory_manager import memory_manager
+from backend_single_agent.src.executor import TOOLS
 
 
 llm = ChatOllama(

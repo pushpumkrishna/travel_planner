@@ -5,6 +5,15 @@ import tempfile
 from fpdf import FPDF
 
 
+def log(state, message):
+
+    print(message)          # Console
+
+    state["agent_logs"].append(message)
+
+    return state
+
+
 def save_json(data: Dict, output_directory: str, output_file_name: str) -> None:
     """
     Saves a given JSON object (Python dictionary) to a specified directory as a file.

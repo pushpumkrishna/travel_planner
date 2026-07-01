@@ -1,21 +1,18 @@
 import streamlit as st
-import json
 from typing import TypedDict, Annotated
 from langgraph.graph import StateGraph, END
-from langchain_core.messages import HumanMessage
-from langchain_ollama import ChatOllama
+# from langchain_core.messages import HumanMessage
+# from langchain_ollama import ChatOllama
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from dotenv import load_dotenv
-from backend.src import (
+from backend_single_agent.src import (
     planner,
-    executor,
     chat_agent,
 )
 import google.generativeai as genai
-
-from backend.memory.memory_manager import memory_manager
-from backend.utils.util import export_to_pdf
-from backend.src import planner, executor
+from backend_single_agent.memory.memory_manager import memory_manager
+from backend_single_agent.utils.util import export_to_pdf
+from backend_single_agent.src import executor
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Load environment variables
@@ -73,15 +70,14 @@ class GraphState(TypedDict):
     completed_actions: list[str]
     planner_confidence: float
     is_complete: bool
+    agent_logs: list[str]
 
 
 # ------------------- LangGraph -------------------
 workflow = StateGraph(GraphState)
-
 workflow.add_node("planner", planner.planner)
 workflow.add_node("executor", executor.executor)
 workflow.add_node("chat", chat_agent.chat_node)
-
 workflow.set_entry_point("planner")
 
 
@@ -121,6 +117,7 @@ if "state" not in st.session_state:
         "completed_actions": [],
         "planner_confidence": 1.0,
         "is_complete": False,
+        "agent_logs": [],
     }
 
 with st.form("travel_form"):

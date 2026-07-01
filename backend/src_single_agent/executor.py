@@ -1,4 +1,4 @@
-from backend.src import (
+from backend_single_agent.src import (
     generate_itinerary,
     recommend_activities,
     weather_forecaster,
@@ -7,7 +7,7 @@ from backend.src import (
     fetch_useful_links,
 )
 
-from backend.memory.memory_manager import memory_manager
+from backend_single_agent.memory.memory_manager import memory_manager
 
 
 # ---------------------------------------------------
