@@ -3,7 +3,7 @@ from flask import app as flask_app
 from dotenv import load_dotenv
 import os
 import configparser
-from backend.config.logging_lib import logger
+from backend_single_agent.config.logging_lib import logger
 
 # Load environment variables from .env file
 load_dotenv()

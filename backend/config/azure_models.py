@@ -1,6 +1,6 @@
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
-from backend.config.config import AzureConfig
-from backend.config.logging_lib import logger
+from backend_single_agent.config.config import AzureConfig
+from backend_single_agent.config.logging_lib import logger
 from langchain_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage
 
