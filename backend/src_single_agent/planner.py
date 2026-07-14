@@ -1,9 +1,5 @@
-from backend_single_agent.memory.memory_manager import memory_manager
-
 from langchain_ollama import ChatOllama
-import json
-
-from backend_single_agent.memory.memory_manager import memory_manager
+from backend.memory.memory_manager import memory_manager
 
 llm = ChatOllama(
     model="llama3.2",
@@ -27,7 +23,7 @@ def planner(state):
     # Read Memory
     memory = memory_manager.get_memory()
 
-    # Keep latest memory inside GraphState (optional but useful)
+    # Keep the latest memory inside GraphState (optional but useful)
     state["memory"] = memory
 
     # -----------------------------
