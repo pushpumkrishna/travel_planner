@@ -1,4 +1,4 @@
-from travel_agent import graph
+from travel_agent_single_agent import graph
 
 
 def run_travel_agent(state):

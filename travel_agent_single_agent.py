@@ -5,14 +5,14 @@ from langgraph.graph import StateGraph, END
 # from langchain_ollama import ChatOllama
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from dotenv import load_dotenv
-from backend_single_agent.src import (
+from backend.src_single_agent import (
     planner,
     chat_agent,
 )
 import google.generativeai as genai
-from backend_single_agent.memory.memory_manager import memory_manager
-from backend_single_agent.utils.util import export_to_pdf
-from backend_single_agent.src import executor
+from backend.memory.memory_manager import memory_manager
+from backend.utils.util import export_to_pdf
+from backend.src_single_agent import executor
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Load environment variables
@@ -23,6 +23,7 @@ st.set_page_config(page_title="AI Travel Planner", layout="wide")
 try:
     # llm = ChatOllama(model="llama3.2", base_url="http://localhost:11434")
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
+    print(llm)
 except Exception as e:
     st.error(f"LLM initialization failed: {str(e)}")
     st.stop()
@@ -89,20 +90,9 @@ def planner_router(state):
 
 
 # Connect Planner to Executor
-workflow.add_conditional_edges(
-    "planner",
-    planner_router
-)
-
-workflow.add_edge(
-    "executor",
-    "planner"
-)
-
-workflow.add_edge(
-    "chat",
-    END
-)
+workflow.add_conditional_edges("planner", planner_router)
+workflow.add_edge("executor", "planner")
+workflow.add_edge("chat", END)
 graph = workflow.compile()
 
 # ------------------- UI -------------------
@@ -169,11 +159,11 @@ with st.form("travel_form"):
     submit_btn = st.form_submit_button("Generate Itinerary")
 
 if submit_btn:
-
     # Clear previous trip memory
     memory_manager.clear()
 
-    preferences_text = f"Destination: {destination}\nMonth: {month}\nDuration: {duration} days\nPeople: {num_people}\nType: {holiday_type}\nBudget: {budget_type}\nComments: {comments}"
+    preferences_text = (f"Destination: {destination}\nMonth: {month}\nDuration: {duration} days\n"
+                        f"People: {num_people}\nType: {holiday_type}\nBudget: {budget_type}\nComments: {comments}")
     preferences = {
         "destination": destination,
         "month": month,
@@ -188,7 +178,6 @@ if submit_btn:
         {
             "preferences_text": preferences_text,
             "preferences": preferences,
-
             # Existing fields
             "itinerary": "",
             "activity_suggestions": "",
@@ -199,7 +188,6 @@ if submit_btn:
             "chat_history": [],
             "user_question": "",
             "chat_response": "",
-
             # Agent State
             "memory": [],
             "next_action": "",
@@ -212,11 +200,9 @@ if submit_btn:
     )
 
     with st.spinner("Generating itinerary..."):
-
         result = graph.invoke(st.session_state.state)
+        st.session_state.state.update(result)
 
-        st.session_state.state.update(result)
-        st.session_state.state.update(result)
         if result.get("itinerary"):
             st.success("Itinerary Created")
         else:

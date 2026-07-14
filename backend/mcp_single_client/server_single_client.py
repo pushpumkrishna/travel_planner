@@ -1,6 +1,5 @@
 from fastmcp import FastMCP
-
-from backend_single_agent.src.agent import run_travel_agent
+from backend.src_single_agent.agent import run_travel_agent
 
 mcp = FastMCP("AI Travel Planner")
 
