@@ -16,6 +16,7 @@ def weather_forecaster(state):
     You are a travel weather assistant.
 
     Create a clear and user-friendly weather guide for the trip.
+    Do not add any message or comment in the start/end of the output.
 
     Trip Details:
     - Destination: {state["preferences"].get("destination", "")}

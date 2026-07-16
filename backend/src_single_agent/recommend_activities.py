@@ -18,6 +18,7 @@ def recommend_activities(state):
     You are a local travel activity expert.
 
     Based on the user's preferences and itinerary, suggest unique and practical local activities.
+    Do not add any message or comment in the start/end of the output.
 
     User Preferences:
     {json.dumps(state["preferences"], indent=2)}
@@ -69,9 +70,6 @@ def recommend_activities(state):
     - Travel group
     - Time limit
     - Safety
-
-    5. Final Recommendation
-    Give one short recommendation for the best activity to prioritize.
     """
 
     try:

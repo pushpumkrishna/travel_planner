@@ -17,6 +17,7 @@ def food_culture_recommender(state):
     You are a local food and culture travel guide.
 
     Create a clear, practical, and user-friendly guide for food, dining, culture, and etiquette.
+    Do not add any message or comment in the start/end of the output.
 
     Trip Details:
     - Destination: {state["preferences"].get("destination", "")}
@@ -41,26 +42,37 @@ def food_culture_recommender(state):
     1. Food & Dining Summary
     - Give a 2-3 line summary of what food experience the traveler can expect.
 
-    2. Must-Try Local Dishes
-    Create a table with these columns:
-    | Dish / Food Item | Why Try It | Best Time / Place Type |
+    2. Day-wise Food & Dining Plan
+    
+    Create a separate table for each day of the trip.
+    
+    For each day, use this format:
+    
+    Day 1: Food & Dining Plan
+    
+    | Time of Day | Suggested Food / Meal | Recommended Restaurants|
+    |---|---|---|
+    | Morning / Breakfast | Mention breakfast dishes or food type | - Restaurant Name — Rating: 4.x/5<br>- Restaurant Name — Rating: 4.x/5 |
+    | Afternoon / Lunch | Mention lunch dishes or food type | - Restaurant Name — Rating: 4.x/5<br>- Restaurant Name — Rating: 4.x/5 |
+    | Evening Snacks | Mention snacks, cafes, street food | - Restaurant Name — Rating: 4.x/5<br>- Restaurant Name — Rating: 4.x/5 |
+    | Night / Dinner | Mention dinner dishes or food type | - Restaurant Name — Rating: 4.x/5<br>- Restaurant Name — Rating: 4.x/5 |
+    
+    Repeat the same table for each day of the trip:
+    - Day 1
+    - Day 2
+    - Day 3
+    - Continue based on trip duration.
+    
+    Rules:
+    - Recommend restaurants based on destination, budget, trip type, and local food culture.
+    - Include restaurant names in bullet points inside the table.
+    - Include ratings where available.
+    - If exact ratings are not available, mention "rating not verified" instead of creating fake ratings.
+    - Keep restaurant suggestions practical and realistic.
+    - Include a mix of local restaurants, cafes, street food areas, and family-friendly places where suitable.
+    - Avoid repeating the same restaurant too many times unless it is highly relevant.
 
-    3. Dining Options by Budget
-    Create a table with these columns:
-    | Budget Level | Recommended Dining Style | Tips |
-
-    Include:
-    - Budget-friendly
-    - Mid-range
-    - Premium / special meal
-
-    4. Suggested Meal Plan
-    - Breakfast ideas
-    - Lunch ideas
-    - Evening snacks
-    - Dinner ideas
-
-    5. Culture & Etiquette
+    3. Culture & Etiquette
     Create a table with these columns:
     | Topic | What to Know | Traveler Tip |
 
@@ -73,11 +85,8 @@ def food_culture_recommender(state):
     - Food habits
     - Safety and crowd awareness
 
-    6. Things to Avoid
+    4. Things to Avoid
     - Mention food, behavior, or travel mistakes to avoid.
-
-    7. Final Local Tip
-    - Give one short practical local tip for the traveler.
     """
 
     try:
