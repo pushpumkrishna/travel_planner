@@ -17,6 +17,7 @@ def generate_itinerary(state):
     You are an expert travel itinerary planner.
 
     Create a detailed, practical, and user-friendly travel itinerary based on the user's preferences.
+    Do not add any message or comment in the start/end of the output.
 
     User Preferences:
     {json.dumps(state["preferences"], indent=2)}
@@ -43,7 +44,7 @@ def generate_itinerary(state):
     - Budget type
     - Best travel style for this trip
 
-    2. Day-wise Itinerary
+    3. Day-wise Itinerary
     For each day, use this format:
 
     Day 1: Short Day Theme
@@ -54,25 +55,11 @@ def generate_itinerary(state):
     | Afternoon | Activity/place + lunch | Keep it practical |
     | Evening | Activity/place | Relaxed suggestion |
     | Night | Dinner / leisure | Food or downtime idea |
+    
+    Important:
+    * Use bullet points wherever necessary.
+    * Give bit detailed knowledge in 2nd and 3rd columns above.
 
-    3. Dining Suggestions
-    - Breakfast ideas
-    - Lunch ideas
-    - Dinner ideas
-    - Local food to try
-
-    4. Downtime / Rest Suggestions
-    - Mention where to keep breaks.
-    - Suggest light activities after heavy travel or walking.
-
-    5. Travel Tips
-    - Transport advice
-    - Weather advice
-    - Safety advice
-    - Budget advice
-
-    6. Final Recommendation
-    - Give one short practical suggestion to make the trip better.
     """
     try:
         result = llm.invoke([HumanMessage(content=prompt)]).content

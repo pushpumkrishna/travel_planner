@@ -207,7 +207,7 @@ if state.get("packing_list"):
 
 if state.get("food_culture_info"):
 
-    st.subheader("🍽️ Food & Culture Info:")
+    st.subheader("🍽️ Food & Culture:")
 
     st.markdown(
         state["food_culture_info"]
@@ -243,24 +243,24 @@ if state.get("useful_links"):
             )
 
 
-if state.get("final_response"):
-
-    st.header("Final Travel Plan")
-    st.markdown(state["final_response"])
-
-    pdf_path = export_to_pdf(
-        state["final_response"]
-    )
-
-    with open(pdf_path, "rb") as pdf_file:
-
-        pdf_data = pdf_file.read()
-
-    st.download_button(
-        label="Download Travel Plan as PDF",
-        data=pdf_data,
-        file_name="travel_plan.pdf",
-        mime="application/pdf",
-    )
+# if state.get("final_response"):
+#
+#     st.header("Final Travel Plan")
+#     st.markdown(state["final_response"])
+#
+#     pdf_path = export_to_pdf(
+#         state["final_response"]
+#     )
+#
+#     with open(pdf_path, "rb") as pdf_file:
+#
+#         pdf_data = pdf_file.read()
+#
+#     st.download_button(
+#         label="Download Travel Plan as PDF",
+#         data=pdf_data,
+#         file_name="travel_plan.pdf",
+#         mime="application/pdf",
+#     )
 
     os.remove(pdf_path)

@@ -1,8 +1,8 @@
 MULTI_AGENT_ORDER = [
-    "itinerary_agent",
     "weather_agent",
-    "activity_agent",
     "packing_agent",
+    "itinerary_agent",
+    "activity_agent",
     "food_culture_agent",
     "links_agent",
 ]
