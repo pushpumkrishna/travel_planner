@@ -66,7 +66,6 @@ def weather_forecaster(state):
     """
     try:
         result = llm.invoke([HumanMessage(content=prompt)]).content
-        print(type(result))
 
         if isinstance(result, list):
             result = "\n".join(

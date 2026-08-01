@@ -142,9 +142,6 @@ if submit_button:
             ):
                 result = graph.invoke(
                     state,
-                    config={
-                        "recursion_limit": 40
-                    },
                 )
 
             result = normalize_multi_agent_state(result)
@@ -263,4 +260,4 @@ if state.get("useful_links"):
 #         mime="application/pdf",
 #     )
 
-    os.remove(pdf_path)
+    # os.remove(pdf_path)
