@@ -1,11 +1,11 @@
 from langchain_core.messages import HumanMessage
-# from langchain_ollama import ChatOllama
+from langchain_ollama import ChatOllama
 from backend.src_multi_agent import llm
 import json
 
 
 def recommend_activities(state):
-    # llm = ChatOllama(model="llama3.2", base_url="http://localhost:11434")
+    llm = ChatOllama(model="llama3.2", base_url="http://localhost:11434")
     # prompt = f"""
     # Based on the following preferences and itinerary, suggest unique local activities:
     # Preferences: {json.dumps(state["preferences"], indent=2)}

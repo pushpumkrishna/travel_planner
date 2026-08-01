@@ -18,26 +18,26 @@ def links_agent(state):
     state["agent_logs"].append("Links Agent started")
 
     try:
+        print("Links agent started")
+
         result = fetch_useful_links.fetch_useful_links(state)
+
+        print("Links result:", result)
+
         if not isinstance(result, dict):
             result = {"useful_links": result}
 
         state.update(result)
-        state["agent_outputs"][AGENT_NAME] = result
+
+        print("Adding links_agent completed")
 
         if AGENT_NAME not in state["completed_agents"]:
             state["completed_agents"].append(AGENT_NAME)
 
-        observation = {
-            "agent": AGENT_NAME,
-            "status": "SUCCESS",
-            "output": result,
-        }
-        memory_manager.add_memory(tool_name=AGENT_NAME, observation=observation)
-        state["memory"] = memory_manager.get_memory()
-        state["last_observation"] = observation
-        state["agent_logs"].append("Links Agent completed")
+        print("Completed agents:", state["completed_agents"])
+
         return state
+
 
     except Exception as e:
         observation = {

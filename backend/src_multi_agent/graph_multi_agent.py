@@ -1,6 +1,5 @@
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
-
 from backend.src_multi_agent import (
     supervisor_agent,
     itinerary_agent,
@@ -50,7 +49,18 @@ class GraphState(TypedDict, total=False):
 
 
 def supervisor_router(state: GraphState):
-    current_agent = state.get("current_agent", "")
+    completed_agents = state.get(
+        "completed_agents",
+        []
+    )
+
+    current_agent = state.get(
+        "current_agent",
+        ""
+    )
+
+    print("Current Agent:", current_agent)
+    print("Completed Agents:", completed_agents)
 
     if current_agent == "itinerary_agent":
         return "itinerary_agent"
