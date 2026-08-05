@@ -1,5 +1,5 @@
 import streamlit as st
-from typing import TypedDict, Annotated
+from typing import TypedDict
 from langgraph.graph import StateGraph, END
 # from langchain_core.messages import HumanMessage
 # from langchain_ollama import ChatOllama
@@ -11,7 +11,7 @@ from backend.src_single_agent import (
 )
 import google.generativeai as genai
 from backend.memory.memory_manager import memory_manager
-from backend.utils.util import export_to_pdf
+# from backend.utils.util import export_to_pdf
 from backend.src_single_agent import executor
 from langchain_google_genai import ChatGoogleGenerativeAI
 
@@ -20,6 +20,7 @@ load_dotenv()
 
 # Initialize LLM
 st.set_page_config(page_title="AI Travel Planner", layout="wide")
+
 try:
     # llm = ChatOllama(model="llama3.2", base_url="http://localhost:11434")
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
@@ -216,14 +217,14 @@ if st.session_state.state.get("itinerary"):
         st.markdown("### Travel Itinerary")
         st.markdown(st.session_state.state["itinerary"])
 
-    # Export PDF button
-    if st.button("Export as PDF"):
-        pdf_path = export_to_pdf(st.session_state.state["itinerary"])
-        if pdf_path:
-            with open(pdf_path, "rb") as f:
-                st.download_button(
-                    "Download Itinerary PDF", f, file_name="itinerary.pdf"
-                )
+    # # Export PDF button
+    # if st.button("Export as PDF"):
+    #     pdf_path = export_to_pdf(st.session_state.state["itinerary"])
+    #     if pdf_path:
+    #         with open(pdf_path, "rb") as f:
+    #             st.download_button(
+    #                 "Download Itinerary PDF", f, file_name="itinerary.pdf"
+    #             )
 
     with col_chat:
         st.markdown("### Chat About Your Itinerary")
