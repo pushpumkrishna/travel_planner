@@ -1,10 +1,10 @@
 from backend.src_single_agent import (
+    budget_estimate,
     generate_itinerary,
     recommend_activities,
     weather_forecaster,
     packing_list_generator,
     food_culture_recommender,
-    fetch_useful_links,
 )
 
 from backend.memory.memory_manager import memory_manager
@@ -20,7 +20,7 @@ TOOLS = {
     "weather_forecaster": weather_forecaster.weather_forecaster,
     "packing_list_generator": packing_list_generator.packing_list_generator,
     "food_culture_recommender": food_culture_recommender.food_culture_recommender,
-    "fetch_useful_links": fetch_useful_links.fetch_useful_links,
+    "fetch_useful_links": budget_estimate.estimate_budget,
 }
 
 

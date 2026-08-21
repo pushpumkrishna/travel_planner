@@ -1,15 +1,9 @@
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from backend.src_multi_agent import (
-    budget_agent,
     supervisor_agent,
-    itinerary_agent,
-    weather_agent,
-    activity_agent,
-    packing_agent,
-    food_culture_agent,
-    final_response_agent,
 )
+from backend.src_multi_agent.agents import activity_agent, budget_agent, final_response_agent, food_culture_agent, itinerary_agent, packing_agent, weather_agent
 
 
 class ChatMessage(TypedDict):

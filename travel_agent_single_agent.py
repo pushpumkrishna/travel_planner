@@ -9,7 +9,7 @@ from backend.src_single_agent import (
     planner,
     chat_agent,
 )
-import google.generativeai as genai
+# import google.generativeai as genai
 from backend.memory.memory_manager import memory_manager
 # from backend.utils.util import export_to_pdf
 from backend.src_single_agent import executor
@@ -30,20 +30,6 @@ except Exception as e:
     st.stop()
 
 
-key = "AQ.Ab8RN6JwGuXFn5HYQj1C0ijm4Lx6C8ifI__HUl0tYJyxDZTbiQ"
-
-
-# 1. Provide your VIP pass (API Key)
-genai.configure(api_key=key)
-
-# Initialize GoogleSerperAPIWrapper
-try:
-    search = GoogleSerperAPIWrapper()
-except Exception as e:
-    st.error(f"Serper API initialization failed: {str(e)}")
-    st.stop()
-
-
 class ChatMessage(TypedDict):
     question: str
     response: str
@@ -55,7 +41,7 @@ class GraphState(TypedDict):
     preferences: dict
     itinerary: str
     activity_suggestions: str
-    useful_links: list[dict]
+    budget_estimate: list[dict]
     weather_forecast: str
     packing_list: str
     food_culture_info: str

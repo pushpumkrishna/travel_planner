@@ -1,5 +1,5 @@
 from backend.memory.memory_manager import memory_manager
-from backend.src_single_agent.fetch_useful_links import estimate_budget
+from backend.src_single_agent.budget_estimate import estimate_budget
 
 
 AGENT_NAME = "budget_agent"
