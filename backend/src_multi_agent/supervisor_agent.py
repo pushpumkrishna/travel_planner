@@ -4,7 +4,7 @@ MULTI_AGENT_ORDER = [
     "itinerary_agent",
     "activity_agent",
     "food_culture_agent",
-    "links_agent",
+    "budget_agent",
 ]
 
 

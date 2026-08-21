@@ -4,7 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from backend.src_multi_agent.graph_multi_agent import graph
 from backend.utils.constant import *
-from backend.utils.util import export_to_pdf
+# from backend.utils.util import export_to_pdf
 
 
 load_dotenv()
@@ -33,7 +33,7 @@ def normalize_multi_agent_state(state):
         "activity_agent": "activity_suggestions",
         "packing_agent": "packing_list",
         "food_culture_agent": "food_culture_info",
-        "links_agent": "useful_links",
+        "budget_agent": "budget_estimate",
         "final_response_agent": "final_response",
     }
 
@@ -193,6 +193,14 @@ if state.get("activity_suggestions"):
     )
 
 
+if state.get("budget_estimate"):
+
+    st.subheader("� Budget Estimate:")
+
+    st.markdown(
+            state["budget_estimate"]
+        )
+
 if state.get("packing_list"):
 
     st.subheader("🎒 Packing List:")
@@ -211,33 +219,6 @@ if state.get("food_culture_info"):
     )
 
 
-if state.get("useful_links"):
-
-    st.subheader("🔗 Useful Links")
-
-    for link in state["useful_links"]:
-
-        title = link.get(
-            "title",
-            "Travel Link",
-        )
-
-        url = link.get(
-            "link",
-            "",
-        )
-
-        if url:
-
-            st.markdown(
-                f"- [{title}]({url})"
-            )
-
-        else:
-
-            st.markdown(
-                f"- {title}"
-            )
 
 
 # if state.get("final_response"):

@@ -39,17 +39,11 @@ def final_response_agent(state):
     if food_culture_info:
         sections.append("## Food & Culture\n" + food_culture_info)
 
-    useful_links = state.get("useful_links", [])
-    if useful_links:
-        link_lines = []
-        for link in useful_links:
-            title = link.get("title", "No title")
-            url = link.get("link", "")
-            if url:
-                link_lines.append(f"- [{title}]({url})")
-            else:
-                link_lines.append(f"- {title}")
-        sections.append("## Useful Links\n" + "\n".join(link_lines))
+    budget_estimate = state.get("budget_estimate", [])
+    if budget_estimate:
+        budget_text = "\n".join(budget_estimate)
+        sections.append("## Budget Estimate\n" + budget_text)
+
 
     final_response = "\n\n".join(sections).strip()
 

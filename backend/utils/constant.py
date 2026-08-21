@@ -40,7 +40,7 @@ INITIAL_STATE_DICT = {
         "preferences": {},
         "itinerary": "",
         "activity_suggestions": "",
-        "useful_links": [],
+        "budget_estimate": [],
         "weather_forecast": "",
         "packing_list": "",
         "food_culture_info": "",
