@@ -1,7 +1,7 @@
-from backend_single_agent.mcp_single_client.client import mcp_client
-from backend_single_agent.memory.memory_manager import memory_manager
-from backend_single_agent.mcp_separate.tool_registry import TOOLS
 
+from backend.memory.memory_manager import memory_manager
+from backend.mcp_multi_agent.tool_registry import TOOLS
+from backend.mcp_multi_agent.client_mcp import mcp_client
 
 def executor(state):
     """
