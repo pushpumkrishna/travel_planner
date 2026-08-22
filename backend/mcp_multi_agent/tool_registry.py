@@ -1,10 +1,10 @@
-from backend_single_agent.src import (
+from backend.src_single_agent import (
     generate_itinerary,
     recommend_activities,
     weather_forecaster,
     packing_list_generator,
     food_culture_recommender,
-    fetch_useful_links,
+    budget_estimate,
 )
 
 TOOLS = {
@@ -19,6 +19,6 @@ TOOLS = {
 
     "food_culture_recommender": food_culture_recommender.food_culture_recommender,
 
-    "fetch_useful_links": fetch_useful_links.fetch_useful_links,
+    "budget_estimate": budget_estimate.estimate_budget,
 
 }

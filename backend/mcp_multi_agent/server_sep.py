@@ -8,13 +8,21 @@ the Model Context Protocol (MCP).
 Run:
     python backend/mcp_single_client/server.py
 """
+import sys
+from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+    
 from mcp.server.fastmcp import FastMCP
 
-from backend_single_agent.src import (
+from backend.src_single_agent import (
     generate_itinerary,
     recommend_activities,
-    fetch_useful_links,
+    budget_estimate,
     weather_forecaster,
     packing_list_generator,
     food_culture_recommender,
@@ -91,12 +99,12 @@ def food_culture_recommender_tool(state: dict) -> dict:
 # Useful Links
 # ---------------------------------------------------
 
-@mcp.tool(name="fetch_useful_links")
-def fetch_useful_links_tool(state: dict) -> dict:
+@mcp.tool(name="budget_estimate")
+def budget_estimate_tool(state: dict) -> dict:
     """
-    Fetch useful travel links.
+    Estimate travel budget.
     """
-    return fetch_useful_links.fetch_useful_links(state)
+    return budget_estimate.estimate_budget(state)
 
 
 # ---------------------------------------------------
@@ -104,4 +112,5 @@ def fetch_useful_links_tool(state: dict) -> dict:
 # ---------------------------------------------------
 
 if __name__ == "__main__":
+
     mcp.run()
